@@ -1,4 +1,4 @@
-A Java text-based project that helps you doing several things with/to matrices, i.e. 2D arrays made of numbers:
+A Java text-based project that helps you do several things with/to matrices, i.e. 2D arrays made of numbers:
 
 
 - Add two matrices? Check!
