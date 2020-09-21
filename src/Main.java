@@ -54,7 +54,7 @@ public class Main {
                 case 6:
                     firstMatrix = fillMatrix();
                     System.out.println("The result is:");
-                    printMatrix(inverseMatrix(firstMatrix));
+                    printMatrix(inverseMatrix(firstMatrix, firstMatrix.length, firstMatrix[0].length));
                     break;
                 case 0:
                     System.exit(0);
@@ -220,23 +220,23 @@ public class Main {
         }
     }
 
-    private static double[][] inverseMatrix(double[][] matrix) {
-        double determinantNumber = calculateDeterminant(matrix, matrix.length);
-        double[][] temporaryInverseMatrix = new double[matrix.length][matrix[0].length];
-        double[][] temp = new double[matrix.length][matrix[0].length];
+    private static double[][] inverseMatrix(double[][] matrix, int rowLength, int columnLength) {
+        double determinantNumber = calculateDeterminant(matrix, rowLength);
+        double[][] temporaryInverseMatrix = new double[rowLength][columnLength];
+        double[][] temp = new double[rowLength][columnLength];
 
-        for (int row = 0; row < matrix.length; row++) {
-            for (int column = 0; column < matrix[0].length; column++) {
-                getCofactor(matrix, temp, row, column, matrix.length);
+        for (int row = 0; row < rowLength; row++) {
+            for (int column = 0; column < rowLength; column++) {
+                getCofactor(matrix, temp, row, column, rowLength);
                 temporaryInverseMatrix[row][column] = Math.pow(-1, row + column)
-                        * calculateDeterminant(temp, matrix.length - 1);
+                        * calculateDeterminant(temp, rowLength - 1);
             }
         }
 
-        double[][] finalInverseMatrix = new double[matrix.length][matrix[0].length];
+        double[][] finalInverseMatrix = new double[rowLength][columnLength];
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
+        for (int i = 0; i < rowLength; i++) {
+            for (int j = 0; j < columnLength; j++) {
                 finalInverseMatrix[i][j] = temporaryInverseMatrix[j][i] / determinantNumber;
             }
         }
